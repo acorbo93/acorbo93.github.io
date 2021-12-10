@@ -7,10 +7,10 @@
 body {
 	padding: 0;
 	margin: 0;
-	background-color: #2F303A;
-	font-family: Poppins, sans-serif;
+	background-color: black;
+	font-family: Courier, sans-serif;
 	font-size: 1.2rem;
-	color: white;
+	color: limegreen;
 	min-height: 100vh;
 }
 
@@ -83,6 +83,8 @@ body {
 	text-decoration: none;
 	font-size: .9rem;
 }
+
+
 
 
 

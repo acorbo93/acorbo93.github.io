@@ -1,90 +1,167 @@
-@import url('https://fonts.googleapis.com/css? family=Poppins:400,500,700');
+// Variables
+$crimson: #DC143C;
 
-*, *::before, *::after {
-	box-sizing: border-box;
-}
-
+/*Typography*/
+html {font: 16px 'Courier', serif;}
+h1 {font-size: 2em;}
+h2 {font-size: 1.75em;}
+h3 {font-size: 1.5em;}
+p {font-size: 1.25em;}
+/*BASE*/
+html,
 body {
-	padding: 0;
-	margin: 0;
-	background-color: #2F303A;
-	font-family: Poppins, sans-serif;
-	font-size: 1.2rem;
-	color: white;
-	min-height: 100vh;
+  width: 100%;
+  height: 100%;
 }
-
-
-.full-height-grow {
-	display: flex;
-	flex-direction: column;
+/*Layout*/
+* {box-sizing: border-box;}
+/*Navigation*/
+nav {
+  position: relative;
+  left: -12em;
+  width: 6em;
+  height: 100%;
+  background: $crimson;
+  font-family: 'Roboto Condensed', sans-serif;
+  transition: left .85s linear;
 }
-
-.brand-logo {
-	display: flex;
-	align-items: center;
-	font-size: 1.25em;
-	color: inherit;
-	text-decoration: none;
+.nav ul {
+  float: left;
+  width: 100%;
 }
-
-.brand-logo-name {
-	margin-left: 1rem;
+.nav a,
+.fa-bars,
+.soc-media a {
+  display: block;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background .35s;
+  &:hover {background: #eb1f48;}
+  &:active {background: #ed365b;}
 }
-
-.main-nav ul {
-	display: flex;
-	margin: 0;
-	padding: 0;
-	list-style: none;
+.nav a {
+  padding: 1em .5em;
+  width: 100%
 }
-
-.main-nav a {
-	color: inherit;
-	text-decoration: none;
-	padding: 1rem;
+.fa-bars {
+  position: absolute;
+  left: 0em;
+  padding: .25em 0;
+  z-index: 99;
+  width: 2em;
+  background: $crimson;
+  text-align: center;
+  transition: left .75s ease-in-out;
+  &:hover {cursor: pointer;}
 }
-
-.main-nav a:hover {
-	color: #adadad;
+[type="checkbox"] {
+  display: none;
+  &:checked + label {left: 3em;}
+  &:checked ~ nav {left: 0;}
 }
-
-.main-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 140px;
+/*Social media*/
+.soc-media {
+  position: absolute;
+  bottom: 5px;
 }
-
-.container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 40px; 
+.soc-media li {float: left;}
+.soc-media a {
+  padding: .5em 0;
+  width: 2em;
+  font-weight: normal;
+  text-align: center;
 }
-
-.title {
-	font-weight: 500;
-	font-size: 3em;
-	margin-bottom: 1rem;
-	margin-top: 0;
+/*Page Wrapper*/
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: url(http://www.gratisography.com/pictures/119.jpg) no-repeat;
+  background-size: cover;
 }
-
-.subtitle {
-	font-weight: 500;
-	font-size: 1.2em;
-	margin-bottom: 2rem;
+.wrapper > h1 {
+  position: absolute;
+  top: 45%;
+  width: 100%;
+  color: $crimson;
+  font-size: 3em;
+  text-align: center;
 }
-
-.btn {
-	color: white;
-	background-color: #1762A7;
-	padding: .75rem 1.5rem;
-	border-radius: .5rem;
-	text-decoration: none;
-	font-size: .9rem;
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,.2);
 }
-
-
+/*Pages*/
+section {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 100%;
+  overflow: hidden;/*hide all on 0% width*/
+  transition: all .75s;
+}
+:target {
+  width: 100%;
+}
+section .content {
+  margin: 1em auto;
+  max-width: 900px;
+  width: 60%;
+  color: $crimson;
+}
+section h1,
+section h2,
+section h3 {
+  margin-bottom: .5em;
+  text-align: center;
+}
+section p {
+  margin: .5em 0;
+  font-family: 'lobster';
+}
+/*Home page*/
+/*About page*/
+.about {
+  background: rgba(255,255,255,.75);
+}
+/*Clients page*/
+.clients {
+  background: rgba(255,255,255,.75)
+}
+.clients .row {
+  float: left;
+  margin-bottom: 1em;
+  width: 100%;
+}
+.client-box {
+  float: left;
+  margin: 0 3em;
+  width: 100px;
+  height: 100px;
+}
+.client-box img {
+  display: block;
+  width: 100%;
+}
+/*Contact page*/
+.contact {
+  background: rgba(255,255,255,.75)
+}
+.map-container,
+.map-container iframe {
+  margin: 2em auto;
+  width: 300px;
+  height: 300px;
+  background: url(http://mapserver.mapy.cz/compose?cx=14.439095639754257&cy=50.05115503092217&w=1024&h=480&scale=0.7&z=15&palette=32) no-repeat center center;
+  border: .5em solid $crimson;
+  border-radius: 50%;
+  overflow: hidden;
+}
 
 
 

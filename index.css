@@ -11,6 +11,7 @@
 	display: flex;
 	align-items: stretch;
 	justify-content: flex-end;
+	padding: 100px;
 }
 
 .home-main-section .lady-image {
@@ -21,6 +22,7 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: bottom left;
+	padding: 100px;
 }
 .home-main-section .quantum-image {
 	background-image: url(images/pro.png);

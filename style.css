@@ -79,8 +79,8 @@ div {
 }
 
 .btn {
-	color: limegreen;
-	background-color: white;
+	color: black;
+	background-color: limegreen;
 	padding: .75rem 1.5rem;
 	border-radius: .5rem;
 	text-decoration: none;

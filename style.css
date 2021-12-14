@@ -33,8 +33,7 @@ div {
 
 .brand-logo-name {
 	margin-left: 1rem;
-	padding-top: 100px;
-	padding-bottom: 10px;
+	align-items: center;
 }
 
 .main-nav ul {

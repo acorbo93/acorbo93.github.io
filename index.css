@@ -34,6 +34,16 @@
 	background-position: bottom left;
 }
 
+.home-main-section .article-image {
+	background-image: url(images/article.png);
+	flex-grow: 1;
+	max-height: 100vh;
+	min-width: 30vw;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: bottom left;
+}
+
 
 .home-main-section .call-to-action {
 	display: flex;

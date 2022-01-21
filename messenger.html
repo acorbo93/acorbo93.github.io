@@ -1,42 +1,63 @@
-<html> 
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<link rel="stylesheet" type="text/css" href="../static/indexmsg.css"> 
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>AES Decryption</title>
+    </head>
+    <body>
+        <h2>AES Decryption</h2>
+        <p>Enter key: <input id=txtkeyhex size=64 maxlength=64 value=''> (32 bytes, hex-encoded)</p>
+        <p><button id=btndecrypt onclick=javascript:fdecrypt();>Decrypt</button></p>
+        <p> </p>
+        <p><div id=divdecryptresult style="font-family:courier;"></p>
 
+        <script>
+            async function fdecrypt() { 
+                var ciphertexthex='13d9858cf68ca674d91bbbd23e2907b5d079e0718c14506f95d44cbd79d8808c76b863a431138f2ed2e7277b166f898f56c3311baffa5013fea2fe93bc1e33ceaa5a97b885d4e724422bf8987b416ece84cacf511136d5ee545826f7f15ee93f';
+                var ivhex='6bf8762dc343afc9a7f02d1a6af75d28';
 
+                if(!ishex(txtkeyhex.value)) {
+                    alert('decryption key must be hex-encoded.');
+                    return;
+                }
+                if(txtkeyhex.value.length!=64) {
+                    alert('invalid length for decryption key.  key must be 32 bytes in length.  (32 bytes = 64 hexadecimal characters)');
+                    return;
+                }
 
+                var ciphertextbytes=hextobytes(ciphertexthex);
+                var keybytes=hextobytes(txtkeyhex.value);
+                var ivbytes=hextobytes(ivhex);
 
-	</head>
-	
-	<body>
+                var key=await window.crypto.subtle.importKey('raw', keybytes, {name: 'AES-CBC', length: 256}, false, ['decrypt']) 
+                .catch(function(err){
+                    alert('unable to import key.');
+                    console.error(err);
+                });
+                if(!key) { return; }
 
-        <form class="grid" action="/result" method="POST">
+                var plaintextbytes=await window.crypto.subtle.decrypt({name: "AES-CBC", iv: ivbytes}, key, ciphertextbytes)
+                .catch(function(err){
+                    alert('decryption failed.  check inputs.');
+                    console.error(err);
+                });
+                if(!plaintextbytes) { return; }
 
-          {% if name %}
-            <center>
-              <h3 style="color: blue;" class="let_space">Hello {{name}}, How was your day!!</h3>
-            </center> 
+                var plaintext=new TextDecoder("utf-8").decode(plaintextbytes);
+                divdecryptresult.innerText=plaintext;
+            }
 
-          {% endif %}
-           
-          <label for="name">Enter you name:</label>
-          <input type="text" id="name" name="name">
+            function ishex(s) {
+                var regex=/[0-9A-Fa-f]/g;
+                return regex.test(s);
+            }
 
-          <center><input class="file_submit" type="Submit"></center>
-
-        </form>
-
-        
-
-        
-
-        
-        <br>
-        <br>
-        <br>
-
-
+            function hextobytes(hexstring) {
+                var result=new Uint8Array(hexstring.length/2);
+                for(var i=0; i<hexstring.length/2; i++) {
+                    result[i]=parseInt(hexstring.substring(i*2, i*2+2), 16);
+                }
+                return result;
+            }
+        </script>
     </body>
-
 </html>

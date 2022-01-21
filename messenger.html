@@ -11,8 +11,26 @@
         <p><button id=btndecrypt onclick=javascript:fdecrypt();>Decrypt</button></p>
         <p> </p>
         <p><div id=divdecryptresult style="font-family:courier;"></p>
+        
+        <p id="myRandText">The random numbers are: </p>
+        <button type="button" onClick='genRandomNumbers()'>Generate 10 random numbers</button>
+
+        
+        
 
         <script>
+            genRandomNumbers = function getRandomNumbers() {
+            const array = new Uint32Array(10);
+            crypto.getRandomValues(array);
+
+            const randText = document.getElementById("myRandText");
+            randText.textContent = "The random numbers are: "
+                for (let i = 0; i < array.length; i++) {
+                    randText.textContent += array[i] + " ";
+                }
+            }
+
+            
             async function fdecrypt() { 
                 var ciphertexthex='13d9858cf68ca674d91bbbd23e2907b5d079e0718c14506f95d44cbd79d8808c76b863a431138f2ed2e7277b166f898f56c3311baffa5013fea2fe93bc1e33ceaa5a97b885d4e724422bf8987b416ece84cacf511136d5ee545826f7f15ee93f';
                 var ivhex='6bf8762dc343afc9a7f02d1a6af75d28';
